@@ -8,7 +8,8 @@
             <th>Priority</th>
         </tr>
     </thead>
-    @foreach(Bug Bug in Bugs){
+    @foreach(var Bug in Bugs)
+    {
         <tr>
             <td>@Bug.Id</td>
             <td>@Bug.Title</td>
@@ -23,8 +24,7 @@
     public List<Bug> Bugs { get; set; }
     protected override void OnInitialized()
     {
-        Bugs = BugService.GetBugs();
-        Bugs.OrderBy(x => x.Priority);
+        Bugs = BugService.GetBugs().OrderBy(x => x.Priority).ToList();
 
     }
 
